@@ -33,8 +33,8 @@ function makeItemBox(item) {
     p += (item.descr) ? ('<p class="goldentext">' + item.descr + '</p>') : ('');
     p += '<table>'
     p += (item.price) ? (is1 + ' itemtype">Цена:' + is2 + GetPrice(item.price) + '</td></tr>') : ('');
-    p += (item.buff_id) ? ('<div class="buff_block">имеет бафф - <img value="'+item.buff_id+'" class="buffimg buffcolor' + buffs[item.buff_id].isdebuff + ' borderedpic" src="' + path + '/play/lib/jpg/' + buffs[item.buff_id].image + '.jpg"></div>') : ('');
-    p += (item.validtime) ? (is1 + ' itemtype">Срок Жизни:' + is2 + GetTime(item.validtime) + '</td></tr>') : ('');
+    p += (item.buff_id && buffs[item.buff_id]) ? ('<div class="buff_block">Имеет бафф - <img value="'+item.buff_id+'" class="buffimg buffcolor' + buffs[item.buff_id].isdebuff + ' borderedpic" src="' + path + '/play/lib/jpg/' + buffs[item.buff_id].image + '.jpg"></div>') : ('');
+    p += (item.validtime) ? (is1 + ' itemtype">Срок жизни:' + is2 + GetTime(item.validtime) + '</td></tr>') : ('');
     p += '</table>';
     p += (item.owner) ? ('<p class="itemowner">Владелец - <a href="http://lostmagic.ru/player/' + item.owner + '/" target="_blank">' + item.owner + '</a></p>') : ('');
     p += '<div class="loot_block">'
@@ -186,9 +186,9 @@ function getEffects(effects) {
 
 function GetPrice(price) {
     var r = '';
-    r += (price > 9999) ? ((Math.floor(price / 10000)) + ' <img src="img/gold.jpg"> ') : ('');
-    r += ((Math.floor(price / 100)) % 100 > 0) ? ((Math.floor(price / 100)) % 100 + ' <img src="img/silver.jpg"> ') : ('');
-    r += (price % 100 > 0) ? (price % 100 + ' <img src="img/bronze.jpg">') : ('');
+    r += (price > 9999) ? ((Math.floor(price / 10000)) + ' <span style="color:rgb(245, 208, 10);font-size:9px;vertical-align: top;">&#11044;</span> ') : ('');
+    r += ((Math.floor(price / 100)) % 100 > 0) ? ((Math.floor(price / 100)) % 100 + ' <span style="color:rgb(168, 168, 168);font-size:9px;vertical-align: top;">&#11044;</span> ') : ('');
+    r += (price % 100 > 0) ? (price % 100 + ' <span style="color:rgb(158, 81, 21);font-size:9px;vertical-align: top;">&#11044;</span>') : ('');
     return r;
 }
 
